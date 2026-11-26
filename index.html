@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nutanix Alerts Status</title>
+<style>
+:root{--bg:#f7f7f5;--panel:#fff;--fg:#1f1f1d;--muted:#6b6b66;--line:#e3e2dd;--bad:#c8372d;--warn:#d99a1b;--grid:#ecebe6}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1b1a;--panel:#252524;--fg:#ecebe6;--muted:#a3a29c;--line:#3a3a37;--bad:#ef6b5f;--warn:#e9b44c;--grid:#33332f}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Sarabun","Noto Sans Thai","Segoe UI",Tahoma,sans-serif;font-size:15px;line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 48px;display:flex;flex-direction:column;gap:28px}
+.eyebrow{font-size:12px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin:0 0 4px}
+h1{font-size:30px;font-weight:600;margin:0}
+h2{font-size:18px;font-weight:600;margin:0}
+.lede{margin:8px 0 0;max-width:75ch}
+.muted{color:var(--muted);font-size:13px;margin:0}
+section{display:flex;flex-direction:column;gap:10px;min-width:0}
+.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.day{font:inherit;color:inherit;cursor:pointer;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.day:hover{border-color:var(--muted)}
+.day[aria-pressed=true]{border:2px solid var(--fg);padding:7px}
+.dname{font-size:12px;color:var(--muted)}
+.dnum{font-weight:600;white-space:nowrap}
+.dc{display:flex;gap:6px;font-size:12px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.dc .c{color:var(--bad);font-weight:600}.dc .z{color:var(--muted)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:4px}
+.tile.crit{border-left:4px solid var(--bad)}.tile.warn{border-left:4px solid var(--warn)}
+.tile .label{font-size:13px;color:var(--muted)}
+.tile .big{font-size:38px;line-height:1.1;font-variant-numeric:tabular-nums}
+.tile.crit .big{color:var(--bad)}
+.sevhead{display:flex;align-items:center;gap:8px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{text-align:left;font-weight:600;color:var(--muted);font-size:13px;padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.num{text-align:right}
+td.empty{color:var(--muted);white-space:normal}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;background:var(--sw)}
+.chart{position:relative;min-height:200px}
+.tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.15);border-radius:8px;padding:6px 10px;font-size:12px;white-space:nowrap}
+details{font-size:13px;color:var(--muted)}details p{max-width:80ch}
+.stale{background:color-mix(in srgb,var(--warn) 18%,transparent);border:1px solid var(--warn);border-radius:8px;padding:8px 12px;font-size:13px}
+@media (max-width:560px){.days{grid-template-columns:repeat(4,minmax(0,1fr))}h1{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">QSNCC-Cluster · Nutanix Prism</p>
+    <h1>Nutanix Alerts Status</h1>
+    <p class="lede" id="lede">—</p>
+    <p class="muted" id="updated"></p>
+  </header>
+  <p class="stale" id="stale" hidden></p>
+
+  <section>
+    <h2>เลือกวัน (ย้อนหลัง 7 วัน)</h2>
+    <div class="days" id="days" role="group" aria-label="เลือกวันที่"></div>
+  </section>
+
+  <div class="tiles">
+    <div class="tile crit"><span class="label">Critical alerts · วันที่เลือก</span><span class="big" id="t-crit">—</span></div>
+    <div class="tile crit"><span class="label">VM/Host ที่มี Critical</span><span class="big" id="t-critvm">—</span></div>
+    <div class="tile warn"><span class="label">Warning alerts · วันที่เลือก</span><span class="big" id="t-warn">—</span></div>
+    <div class="tile warn"><span class="label">VM/Host ที่มี Warning</span><span class="big" id="t-warnvm">—</span></div>
+  </div>
+
+  <section>
+    <div class="sevhead"><span class="dot" style="background:var(--bad)"></span><h2>Critical · VM/Host</h2></div>
+    <div class="tblwrap"><table><thead><tr><th>VM / Host</th><th>Metric</th><th class="num">จำนวนครั้ง</th><th>ครั้งแรก</th><th>ล่าสุด</th></tr></thead><tbody id="crit-body"></tbody></table></div>
+  </section>
+
+  <section>
+    <div class="sevhead"><span class="dot" style="background:var(--warn)"></span><h2>Warning · VM/Host</h2></div>
+    <div class="tblwrap"><table><thead><tr><th>VM / Host</th><th>Metric</th><th class="num">จำนวนครั้ง</th><th>ครั้งแรก</th><th>ล่าสุด</th></tr></thead><tbody id="warn-body"></tbody></table></div>
+  </section>
+
+  <section>
+    <h2>แนวโน้ม 7 วัน</h2>
+    <div class="legend"><span style="--sw:var(--bad)">Critical</span><span style="--sw:var(--warn)">Warning</span></div>
+    <p class="muted">กดที่แท่งเพื่อดูรายละเอียดของวันนั้น</p>
+    <div class="chart" id="chart"></div>
+  </section>
+
+  <details>
+    <summary>ที่มาของข้อมูลและข้อจำกัด</summary>
+    <p>ข้อมูลมาจากอีเมลแจ้งเตือนของ Nutanix Prism (nutanix@qsncc.com) สำหรับ QSNCC-Cluster ไฟล์นี้สร้างใหม่ทุกเช้าโดย Daily Brief เวลาทั้งหมดเป็นเวลาไทย (UTC+7) ไม่นับอีเมล Alert Digest, NCC Health Check และ alert ระดับ Info ตัวเลขคือจำนวนครั้งที่แจ้งเตือน ซึ่ง Nutanix มักส่งซ้ำหลายฉบับในเวลาใกล้กัน อีเมลไม่ได้บอกว่า alert ถูกแก้ไขแล้วหรือยัง ต้องตรวจสถานะปัจจุบันใน Prism</p>
+  </details>
+</div>
+
+<script>
+const DATA = {"rows": [{"time": "2026-11-01 19:06", "date": "2026-11-01", "severity": "Warning", "category": "Power", "metric": "Power supply PS2 down", "entity": "Block J30AA08E", "entity_type": "block", "alert_id": "A1046"}, {"time": "2026-11-01 19:06", "date": "2026-11-01", "severity": "Warning", "category": "Power", "metric": "Power supply PS2 down", "entity": "Block J30AA08F", "entity_type": "block", "alert_id": "A1046"}, {"time": "2026-11-01 19:06", "date": "2026-11-01", "severity": "Warning", "category": "Power", "metric": "Power supply PS2 down", "entity": "Block J30AA08G", "entity_type": "block", "alert_id": "A1046"}, {"time": "2026-11-01 19:06", "date": "2026-11-01", "severity": "Warning", "category": "Power", "metric": "Power supply PS2 down", "entity": "Block J30AA08E", "entity_type": "block", "alert_id": "A1046"}, {"time": "2026-11-01 19:07", "date": "2026-11-01", "severity": "Warning", "category": "Power", "metric": "Power supply PS2 down", "entity": "Block J30AA08F", "entity_type": "block", "alert_id": "A1046"}, {"time": "2026-11-01 19:07", "date": "2026-11-01", "severity": "Warning", "category": "Power", "metric": "Power supply PS2 down", "entity": "Block J30AA08G", "entity_type": "block", "alert_id": "A1046"}, {"time": "2026-11-01 19:10", "date": "2026-11-01", "severity": "Critical", "category": "Power", "metric": "Power supply PS2 down", "entity": "Block J30AA08E", "entity_type": "block", "alert_id": "A1046"}, {"time": "2026-11-01 19:10", "date": "2026-11-01", "severity": "Critical", "category": "Power", "metric": "Power supply PS2 down", "entity": "Block J30AA08E", "entity_type": "block", "alert_id": "A1046"}, {"time": "2026-11-01 19:10", "date": "2026-11-01", "severity": "Critical", "category": "Power", "metric": "Power supply PS2 down", "entity": "Block J30AA08F", "entity_type": "block", "alert_id": "A1046"}, {"time": "2026-11-01 19:10", "date": "2026-11-01", "severity": "Critical", "category": "Power", "metric": "Power supply PS2 down", "entity": "Block J30AA08G", "entity_type": "block", "alert_id": "A1046"}, {"time": "2026-11-01 19:11", "date": "2026-11-01", "severity": "Critical", "category": "Power", "metric": "Power supply PS2 down", "entity": "Block J30AA08G", "entity_type": "block", "alert_id": "A1046"}, {"time": "2026-11-01 19:11", "date": "2026-11-01", "severity": "Critical", "category": "Power", "metric": "Power supply PS2 down", "entity": "Block J30AA08F", "entity_type": "block", "alert_id": "A1046"}, {"time": "2026-11-01 19:18", "date": "2026-11-01", "severity": "Warning", "category": "Network", "metric": "NIC link down", "entity": "Host 192.168.30.16", "entity_type": "host", "alert_id": "A1082"}, {"time": "2026-11-01 19:18", "date": "2026-11-01", "severity": "Warning", "category": "Network", "metric": "NIC link down", "entity": "Host 192.168.30.16", "entity_type": "host", "alert_id": "A1082"}, {"time": "2026-11-01 19:19", "date": "2026-11-01", "severity": "Warning", "category": "Network", "metric": "NIC link down", "entity": "Host 192.168.30.14", "entity_type": "host", "alert_id": "A1082"}, {"time": "2026-11-01 19:19", "date": "2026-11-01", "severity": "Warning", "category": "Network", "metric": "NIC link down", "entity": "Host 192.168.30.15", "entity_type": "host", "alert_id": "A1082"}, {"time": "2026-11-01 19:19", "date": "2026-11-01", "severity": "Warning", "category": "Network", "metric": "NIC link down", "entity": "Host 192.168.30.14", "entity_type": "host", "alert_id": "A1082"}, {"time": "2026-11-01 19:20", "date": "2026-11-01", "severity": "Warning", "category": "Network", "metric": "NIC link down", "entity": "Host 192.168.30.15", "entity_type": "host", "alert_id": "A1082"}, {"time": "2026-11-17 09:25", "date": "2026-11-17", "severity": "Warning", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-PROD-VM-ZPROXY1", "entity_type": "vm", "alert_id": "A82308978"}, {"time": "2026-11-17 09:26", "date": "2026-11-17", "severity": "Critical", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-PROD-VM-ZPROXY3", "entity_type": "vm", "alert_id": "A82308978"}, {"time": "2026-11-17 09:26", "date": "2026-11-17", "severity": "Warning", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-PROD-VM-ZMBOX", "entity_type": "vm", "alert_id": "A82308978"}, {"time": "2026-11-17 09:45", "date": "2026-11-17", "severity": "Warning", "category": "Memory", "metric": "VM Memory Usage", "entity": "2-PROD-NCCIIS-146", "entity_type": "vm", "alert_id": "A6bc8bb84"}, {"time": "2026-11-17 09:46", "date": "2026-11-17", "severity": "Warning", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-PROD-CENTRICS-WEB-SQL-STD", "entity_type": "vm", "alert_id": "A2a6ea476"}, {"time": "2026-11-17 09:46", "date": "2026-11-17", "severity": "Critical", "category": "Memory", "metric": "VM Memory Usage", "entity": "1-PROD-SRV-VENT", "entity_type": "vm", "alert_id": "A6bc8bb84"}, {"time": "2026-11-17 09:47", "date": "2026-11-17", "severity": "Critical", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-PROD-VM-SageApp", "entity_type": "vm", "alert_id": "A2a6ea476"}, {"time": "2026-11-17 09:48", "date": "2026-11-17", "severity": "Warning", "category": "Disk", "metric": "VM Disk Usage", "entity": "3-PROD-Info-PM", "entity_type": "vm", "alert_id": "A2a6ea476"}, {"time": "2026-11-17 12:55", "date": "2026-11-17", "severity": "Critical", "category": "Memory", "metric": "VM Memory Usage", "entity": "2-PROD-NCCIIS-146", "entity_type": "vm", "alert_id": "A6bc8bb84"}, {"time": "2026-11-18 16:10", "date": "2026-11-18", "severity": "Critical", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-PROD-VM-SRV-BPLUS-184", "entity_type": "vm", "alert_id": "A9ee967f4"}, {"time": "2026-11-19 10:05", "date": "2026-11-19", "severity": "Warning", "category": "CPU", "metric": "VM CPU Usage", "entity": "1-PROD-VM-SRV-BPLUS-184", "entity_type": "vm", "alert_id": "A638a7541"}, {"time": "2026-11-19 10:50", "date": "2026-11-19", "severity": "Warning", "category": "Memory", "metric": "VM Memory Usage", "entity": "1-PROD-RPA-Winserver", "entity_type": "vm", "alert_id": "A6bc8bb84"}, {"time": "2026-11-19 15:45", "date": "2026-11-19", "severity": "Warning", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-PROD-VM-ZPROXY1", "entity_type": "vm", "alert_id": "A2c5e2dc6"}, {"time": "2026-11-19 15:46", "date": "2026-11-19", "severity": "Critical", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-PROD-VM-ZPROXY3", "entity_type": "vm", "alert_id": "A2c5e2dc6"}, {"time": "2026-11-19 15:46", "date": "2026-11-19", "severity": "Warning", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-PROD-VM-ZMBOX", "entity_type": "vm", "alert_id": "A2c5e2dc6"}, {"time": "2026-11-19 15:47", "date": "2026-11-19", "severity": "Warning", "category": "Disk", "metric": "VM Disk Usage", "entity": "3-PROD-SRVDOCKER-APP1", "entity_type": "vm", "alert_id": "A2c5e2dc6"}, {"time": "2026-11-19 15:48", "date": "2026-11-19", "severity": "Critical", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-PROD-KUBE1W", "entity_type": "vm", "alert_id": "A2c5e2dc6"}, {"time": "2026-11-19 15:48", "date": "2026-11-19", "severity": "Warning", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-DEV-KUBE1W", "entity_type": "vm", "alert_id": "A2c5e2dc6"}, {"time": "2026-11-19 15:49", "date": "2026-11-19", "severity": "Warning", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-PROD-KUBE2W", "entity_type": "vm", "alert_id": "A2c5e2dc6"}, {"time": "2026-11-19 15:49", "date": "2026-11-19", "severity": "Warning", "category": "Memory", "metric": "VM Memory Usage", "entity": "3-PROD-SRVDOCKER-APP1", "entity_type": "vm", "alert_id": "A029d931e"}, {"time": "2026-11-19 16:45", "date": "2026-11-19", "severity": "Warning", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-PROD-CENTRICS-WEB-SQL-STD", "entity_type": "vm", "alert_id": "A2a6ea476"}, {"time": "2026-11-19 16:46", "date": "2026-11-19", "severity": "Critical", "category": "Disk", "metric": "VM Disk Usage", "entity": "1-PROD-VM-SageApp", "entity_type": "vm", "alert_id": "A2a6ea476"}, {"time": "2026-11-19 16:46", "date": "2026-11-19", "severity": "Warning", "category": "Memory", "metric": "VM Memory Usage", "entity": "2-PROD-NCCIIS-146", "entity_type": "vm", "alert_id": "A6bc8bb84"}, {"time": "2026-11-21 11:22", "date": "2026-11-21", "severity": "Warning", "category": "Network", "metric": "PE-PC connection failure", "entity": "QSNCC-Prism-Central", "entity_type": "cluster", "alert_id": "A200802"}, {"time": "2026-11-21 11:22", "date": "2026-11-21", "severity": "Critical", "category": "Other", "metric": "IDF source to remote sync status", "entity": "QSNCC-Prism-Central", "entity_type": "cluster", "alert_id": "A200001"}, {"time": "2026-11-21 14:56", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Dataservice IP unreachable", "entity": "QSNCC-Prism-Central", "entity_type": "cluster", "alert_id": "A400105"}, {"time": "2026-11-21 15:07", "date": "2026-11-21", "severity": "Warning", "category": "Disk", "metric": "CVM /home disk usage high", "entity": "CVM 192.168.30.19", "entity_type": "host", "alert_id": "A1031"}, {"time": "2026-11-21 15:07", "date": "2026-11-21", "severity": "Warning", "category": "Disk", "metric": "CVM /home disk usage high", "entity": "CVM 192.168.30.19", "entity_type": "host", "alert_id": "A1031"}, {"time": "2026-11-21 15:16", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.14", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 15:16", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.16", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 15:16", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.15", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 15:16", "date": "2026-11-21", "severity": "Warning", "category": "Network", "metric": "PE-PC connection failure", "entity": "Host 192.168.30.20", "entity_type": "host", "alert_id": "A200802"}, {"time": "2026-11-21 15:16", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.15", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 15:16", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.16", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 15:16", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.14", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 15:24", "date": "2026-11-21", "severity": "Warning", "category": "Other", "metric": "Incompatible AHV version", "entity": "QSNCC-Cluster", "entity_type": "cluster", "alert_id": "A111061"}, {"time": "2026-11-21 15:24", "date": "2026-11-21", "severity": "Warning", "category": "Other", "metric": "Incompatible AHV version", "entity": "QSNCC-Cluster", "entity_type": "cluster", "alert_id": "A111061"}, {"time": "2026-11-21 16:05", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.15", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 16:05", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.16", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 16:05", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.15", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 16:05", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.16", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 16:07", "date": "2026-11-21", "severity": "Warning", "category": "Network", "metric": "PE-PC connection failure", "entity": "Host 192.168.30.20", "entity_type": "host", "alert_id": "A200802"}, {"time": "2026-11-21 16:14", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.14", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 16:14", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.14", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 17:29", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "File server partner server connectivity", "entity": "File server qsnccdata", "entity_type": "cluster", "alert_id": "A160054"}, {"time": "2026-11-21 17:29", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "File server partner server connectivity", "entity": "File server qsnccdata", "entity_type": "cluster", "alert_id": "A160054"}, {"time": "2026-11-21 19:19", "date": "2026-11-21", "severity": "Warning", "category": "Other", "metric": "Zookeeper server unresponsive", "entity": "CVM ID 5", "entity_type": "host", "alert_id": "A130344"}, {"time": "2026-11-21 19:20", "date": "2026-11-21", "severity": "Warning", "category": "Other", "metric": "Zookeeper server unresponsive", "entity": "CVM ID 5", "entity_type": "host", "alert_id": "A130344"}, {"time": "2026-11-21 20:26", "date": "2026-11-21", "severity": "Warning", "category": "Network", "metric": "PE-PC connection failure", "entity": "Host 192.168.30.20", "entity_type": "host", "alert_id": "A200802"}, {"time": "2026-11-21 20:50", "date": "2026-11-21", "severity": "Warning", "category": "Other", "metric": "Zookeeper server unresponsive", "entity": "CVM ID 6", "entity_type": "host", "alert_id": "A130344"}, {"time": "2026-11-21 20:50", "date": "2026-11-21", "severity": "Warning", "category": "Other", "metric": "Zookeeper server unresponsive", "entity": "CVM ID 6", "entity_type": "host", "alert_id": "A130344"}, {"time": "2026-11-21 21:20", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.15", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 21:20", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.15", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 21:34", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.14", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 21:34", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.14", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 22:16", "date": "2026-11-21", "severity": "Warning", "category": "Other", "metric": "Zookeeper server unresponsive", "entity": "CVM ID 7", "entity_type": "host", "alert_id": "A130344"}, {"time": "2026-11-21 22:17", "date": "2026-11-21", "severity": "Warning", "category": "Other", "metric": "Zookeeper server unresponsive", "entity": "CVM ID 7", "entity_type": "host", "alert_id": "A130344"}, {"time": "2026-11-21 22:46", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.16", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-21 22:46", "date": "2026-11-21", "severity": "Critical", "category": "Network", "metric": "Inconsistent virtual switch state", "entity": "Host 192.168.30.16", "entity_type": "host", "alert_id": "A150004"}, {"time": "2026-11-23 18:17", "date": "2026-11-23", "severity": "Warning", "category": "Memory", "metric": "VM Memory Usage", "entity": "1-PROD-RPA-Winserver", "entity_type": "vm", "alert_id": "A6bc8bb84"}, {"time": "2026-11-24 20:02", "date": "2026-11-24", "severity": "Warning", "category": "Memory", "metric": "VM Memory Usage", "entity": "1-PROD-RPA-Winserver", "entity_type": "vm", "alert_id": "A6bc8bb84"}], "generated": "2026-11-26 08:06"};
+(function(){
+  const TH_M=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+  const TH_D=['อา.','จ.','อ.','พ.','พฤ.','ศ.','ส.'];
+  const rows=(DATA.rows||[]).filter(r=>r.severity==='Critical'||r.severity==='Warning');
+  const bkkToday=()=>new Date(Date.now()+7*3600e3).toISOString().slice(0,10);
+  const addDays=(s,n)=>{const d=new Date(s+'T00:00:00Z');d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10);};
+  const today=bkkToday();
+  const days=[];for(let i=6;i>=0;i--)days.push(addDays(today,-i));
+  const fmtDay=s=>{const d=new Date(s+'T00:00:00Z');return TH_D[d.getUTCDay()]+' '+d.getUTCDate()+' '+TH_M[d.getUTCMonth()]+' '+(d.getUTCFullYear()+543);};
+  const hhmm=s=>s?s.slice(11,16)+' น.':'—';
+  const esc=t=>String(t);
+  const summary=day=>{const r=rows.filter(a=>a.date===day),c=r.filter(a=>a.severity==='Critical'),w=r.filter(a=>a.severity==='Warning');
+    return{date:day,critical:c.length,warning:w.length,crit_vms:new Set(c.map(a=>a.entity)).size,warn_vms:new Set(w.map(a=>a.entity)).size};};
+  const week=days.map(summary);
+  let sel=(location.hash||'').slice(1);if(!days.includes(sel))sel=today;
+
+  if(DATA.generated){
+    document.getElementById('updated').textContent='ข้อมูลอัปเดตเมื่อ '+DATA.generated+' (เวลาไทย)';
+    const g=new Date(DATA.generated.replace(' ','T')+':00+07:00');
+    if(Date.now()-g.getTime()>30*3600e3){const s=document.getElementById('stale');s.hidden=false;s.textContent='ข้อมูลยังไม่ได้อัปเดตเกิน 30 ชั่วโมง ตัวเลขของวันล่าสุดอาจไม่ครบ';}
+  }
+
+  function setText(id,v){document.getElementById(id).textContent=v;}
+  function renderDays(){
+    const box=document.getElementById('days');box.replaceChildren();
+    week.forEach(r=>{
+      const b=document.createElement('button');b.type='button';b.className='day';b.setAttribute('aria-pressed',r.date===sel);
+      const d=new Date(r.date+'T00:00:00Z');
+      const n1=document.createElement('span');n1.className='dname';n1.textContent=r.date===today?'วันนี้':TH_D[d.getUTCDay()];
+      const n2=document.createElement('span');n2.className='dnum';n2.textContent=d.getUTCDate()+' '+TH_M[d.getUTCMonth()];
+      const n3=document.createElement('span');n3.className='dc';
+      if(!r.critical&&!r.warning){const z=document.createElement('span');z.className='z';z.textContent='ไม่มี';n3.append(z);}
+      else{if(r.critical){const c=document.createElement('span');c.className='c';c.textContent='C '+r.critical;n3.append(c);}
+           if(r.warning){const w=document.createElement('span');w.textContent='W '+r.warning;n3.append(w);}}
+      b.append(n1,n2,n3);b.onclick=()=>select(r.date);box.append(b);
+    });
+  }
+  function renderTable(id,sev,list){
+    const tb=document.getElementById(id);tb.replaceChildren();
+    const rs=list.filter(r=>r.severity===sev);
+    if(!rs.length){const td=tb.insertRow().insertCell();td.colSpan=5;td.className='empty';td.textContent='ไม่มี '+sev+' alert ในวันที่เลือก';return;}
+    rs.forEach(r=>{const tr=tb.insertRow();tr.insertCell().textContent=r.entity;tr.insertCell().textContent=r.metric;
+      const c=tr.insertCell();c.className='num';c.textContent=r.count;tr.insertCell().textContent=hhmm(r.first);tr.insertCell().textContent=hhmm(r.last);});
+  }
+  function renderChart(){
+    const box=document.getElementById('chart');box.replaceChildren();
+    const W=box.clientWidth||600,H=200,m={t:18,r:8,b:26,l:30};
+    const NS='http://www.w3.org/2000/svg';const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+    const svg=el('svg',{width:'100%',height:H,viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'จำนวน Critical และ Warning alerts รายวัน 7 วันล่าสุด'});
+    const ymax=Math.max(1,...week.map(d=>d.critical+d.warning));
+    const step=ymax<=4?1:Math.ceil(ymax/4);const top=Math.ceil(ymax/step)*step;
+    const y=v=>H-m.b-(v/top)*(H-m.b-m.t);
+    for(let v=0;v<=top;v+=step){svg.append(el('line',{x1:m.l,x2:W-m.r,y1:y(v),y2:y(v),stroke:'var(--grid)'}));
+      const t=el('text',{x:m.l-6,y:y(v),'text-anchor':'end','dominant-baseline':'middle','font-size':11,fill:'var(--muted)'});t.textContent=v;svg.append(t);}
+    const bandW=(W-m.l-m.r)/week.length,bw=bandW*0.7;
+    const tip=document.createElement('div');tip.className='tip';tip.hidden=true;
+    week.forEach((d,i)=>{
+      const x=m.l+i*bandW+(bandW-bw)/2,op=d.date===sel?1:0.4;
+      const g=el('g',{opacity:op});
+      if(d.warning)g.append(el('rect',{x,width:bw,y:y(d.warning),height:y(0)-y(d.warning),fill:'var(--warn)'}));
+      if(d.critical)g.append(el('rect',{x,width:bw,y:y(d.warning+d.critical),height:y(d.warning)-y(d.warning+d.critical),fill:'var(--bad)'}));
+      svg.append(g);
+      const tot=d.critical+d.warning;const lt=el('text',{x:x+bw/2,y:y(tot)-4,'text-anchor':'middle','font-size':11,fill:'var(--muted)'});lt.textContent=tot;svg.append(lt);
+      const lb=el('text',{x:x+bw/2,y:H-8,'text-anchor':'middle','font-size':11,fill:'var(--muted)'});lb.textContent=(+d.date.slice(8))+'/'+(+d.date.slice(5,7));svg.append(lb);
+      const hit=el('rect',{x:m.l+i*bandW,width:bandW,y:m.t,height:H-m.b-m.t,fill:'transparent',style:'cursor:pointer'});
+      hit.addEventListener('click',()=>select(d.date));
+      hit.addEventListener('pointermove',ev=>{tip.textContent=`${fmtDay(d.date)} · Critical ${d.critical} (${d.crit_vms} VM) · Warning ${d.warning} (${d.warn_vms} VM)`;tip.hidden=false;
+        const r=box.getBoundingClientRect();const px=ev.clientX-r.left,py=ev.clientY-r.top;
+        tip.style.left=Math.max(0,Math.min(box.clientWidth-tip.offsetWidth,px-tip.offsetWidth/2))+'px';tip.style.top=Math.max(0,py-tip.offsetHeight-8)+'px';});
+      hit.addEventListener('pointerleave',()=>{tip.hidden=true;});
+      svg.append(hit);
+    });
+    box.append(svg,tip);
+  }
+  function select(day){sel=day;history.replaceState(null,'','#'+day);render();}
+  function render(){
+    const s=summary(sel);
+    setText('lede',`วันที่ ${fmtDay(sel)} มี Critical ${s.critical} alerts บน ${s.crit_vms} VM/Host และ Warning ${s.warning} alerts บน ${s.warn_vms} VM/Host`);
+    setText('t-crit',s.critical);setText('t-critvm',s.crit_vms);setText('t-warn',s.warning);setText('t-warnvm',s.warn_vms);
+    const g=new Map();
+    rows.filter(a=>a.date===sel).forEach(a=>{const k=a.severity+'|'+a.entity+'|'+a.metric;
+      const o=g.get(k)||{severity:a.severity,entity:a.entity,metric:a.metric,count:0,first:a.time,last:a.time};
+      o.count++;if(a.time<o.first)o.first=a.time;if(a.time>o.last)o.last=a.time;g.set(k,o);});
+    const list=[...g.values()].sort((x,y)=>y.count-x.count||(y.last>x.last?1:-1));
+    renderTable('crit-body','Critical',list);renderTable('warn-body','Warning',list);
+    renderDays();renderChart();
+  }
+  window.addEventListener('resize',renderChart);
+  render();
+})();
+</script>
+</body>
+</html>
