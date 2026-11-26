@@ -274,3 +274,21 @@ a.reg:hover::before{width:100%}
 .page-content.detail .column_attr strong{font-weight:600;color:#111}
 .page-content h6 a.reg{color:#fff;font-size:.9rem}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+/* ===== Cookie settings panel + consent placeholder ===== */
+.ck-panel{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:none;align-items:center;justify-content:center;padding:16px}
+.ck-panel.show{display:flex}
+.ck-box{position:relative;background:#fff;max-width:560px;width:100%;border-radius:6px;padding:28px 28px 22px;font-family:"Montserrat","Noto Sans Thai",sans-serif;box-shadow:0 10px 40px rgba(0,0,0,.25)}
+.ck-box h3{margin:0 0 14px;font-size:20px;color:#111}
+.ck-x{position:absolute;right:14px;top:8px;background:none;border:0;font-size:24px;cursor:pointer;color:#333}
+.ck-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0;border-top:1px solid #eee;cursor:pointer}
+.ck-row strong{display:block;font-size:15px;color:#222}
+.ck-row small{display:block;font-size:13px;line-height:20px;color:#666;margin-top:2px}
+.ck-row em{font-style:normal;font-size:12px;color:#2c3e5c;white-space:nowrap}
+.ck-row input{width:20px;height:20px;flex:none;accent-color:#2c3e5c}
+.ck-btns{display:flex;justify-content:flex-end;gap:12px;margin-top:16px;flex-wrap:wrap}
+.ck-btns button{font:inherit;font-size:14px;border:0;padding:9px 18px;border-radius:2px;cursor:pointer}
+.ck-save{background:#c4c4c4}
+.ck-all{background:#2c3e5c;color:#fff}
+.consent-ph{max-width:100%;background:#f1f3f6;border:1px dashed #b8c0cc;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;box-sizing:border-box;font-size:14px;color:#444}
+.consent-ph button{margin-top:10px;background:#2c3e5c;color:#fff;border:0;padding:9px 18px;border-radius:2px;cursor:pointer;font:inherit}
