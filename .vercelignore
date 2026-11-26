@@ -1,0 +1,5 @@
+# ไฟล์ที่ไม่ต้องขึ้นเว็บ (ใช้เฉพาะตอนย้ายระบบ / ใช้กับ Apache เท่านั้น)
+_migration
+README.txt
+.htaccess
+assets-to-migrate.txt

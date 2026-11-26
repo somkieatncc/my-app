@@ -1,0 +1,1707 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": false,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/th/fact-sheet{/}?",
+      "destination": "/th/factsheet/",
+      "statusCode": 301
+    },
+    {
+      "source": "/thankyou{/}?",
+      "destination": "/factsheet/",
+      "statusCode": 301
+    },
+    {
+      "source": "/why-visit{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/why-visit{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/why-ica{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/why-ica{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/organizer{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/organizer{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fact-sheet{/}?",
+      "destination": "/factsheet/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ladprao-general-hospital{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/somo-beauty{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/somo-beauty{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/ladprao-general-hospital{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/onsite-acvitities{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/onsite-acvitities{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/foot-clinic{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/foot-clinic{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/plearnprai{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/plearnprai{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/karnya-thai-cuisine{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/karnya-thai-cuisine{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/foshan-nanhai-bainuo{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/foshan-nanhai-bainuo{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dreammining{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/dreammining{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/chiangmai-wellbeing{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/chiangmai-wellbeing{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/prima-laser{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/prima-laser{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/great-tech{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/great-tech{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/woka{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/woka{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/wellquest{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wellquest{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/innoage{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/innoage{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/serenata{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/serenata{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/prowell{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/prowell{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/life-supplements{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/life-supplements{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/kamei-product{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/kamei-product{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/jin-wellbeing{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/jin-wellbeing{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/erawan-textile{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/erawan-textile{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/aquatrek-solution{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/aquatrek-solution{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ampan-hair{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/ampan-hair{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/abhai-wellness{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/abhai-wellness{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/media-download{/}?",
+      "destination": "/newsletter/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/media-download{/}?",
+      "destination": "/th/newsletter/",
+      "statusCode": 301
+    },
+    {
+      "source": "/249-corporation{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/249-corporation{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dr-wellness-x{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/dr-wellness-x{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/vital-glow-skin{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/vital-glow-skin{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/royce-lab-international{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/royce-lab-international{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/bangkok-ria{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/bangkok-ria{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/samluang{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/samluang{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/guangxi-golden{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wellness-department-store{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/wellness-department-store{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tsumugi-intertrade{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/tsumugi-intertrade{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/guangxi-golden{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/fasicare{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fasicare{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/maxwell{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/imagine-health{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/kdms{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/kdms{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/ttmic{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ttmic{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/samrong-hospital{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/samrong-hospital{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/we-care{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/we-care{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/san-paulo{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/san-paulo{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/tm-nursing{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tm-nursing{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/tactiva{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tactiva{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/smile-rubber{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/smile-rubber{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/sn-service{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/sn-service{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/maxwell{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/imagine-health{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/nanhai-bainuo{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/nanhai-bainuo{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/aetrex{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/aetrex{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/creacare{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/creacare{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/bangpakok-1{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/bangpakok-1{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/nonthavej{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/nonthavej{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/thai-way-products{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/thai-way-products{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/vital{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/turtle-gym{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/turtle-gym{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/tria-medical{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tria-medical{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/lypo-c{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/lypo-c{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/kohshin-rubber{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/kohshin-rubber{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/bangpakok-9{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wareerak{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/shine{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ramkhamhaeng-hospital{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/ramkhamhaeng-hospital{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/mamagreen-organic{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/mahidol-university{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/mahidol-university{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/lerdrattana-group{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/lerdrattana-group{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/kenkou-desu{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/kenkou-desu{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/kawamoto-corporation{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/kawamoto-corporation{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/glory-plan{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/glory-plan{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fixi-feet{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ferro-construction-products{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/ferro-construction-products{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/eminence-international-limited{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/cetilar{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/bangpakok-9{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/wareerak{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/shine{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/mamagreen-organic{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/cetilar{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/fixi-feet{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/2019-gallery{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/2019-gallery{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/2020-gallery{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/2020-gallery{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/2020-gallery-2{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/gallery{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/gallery{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/who-you-will-meet{/}?",
+      "destination": "/th/visitor-profile/",
+      "statusCode": 301
+    },
+    {
+      "source": "/visa{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/who-you-will-meet{/}?",
+      "destination": "/visitor-profile/",
+      "statusCode": 301
+    },
+    {
+      "source": "/why-thailand{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/admission-policy-2{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/exhibitor-enquiry{/}?",
+      "destination": "/contact-us/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/show-activities{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/why-thailand{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/admission-policy-2{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/visa{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/thainakarin-hospital-1{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/thainakarin-hospital{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/eminence-international-limited{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/home-2{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/home-2{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/ศูนย์การแพทย์เวชศาสตร์ชะลอวัย{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ศูนย์การแพทย์เวชศาสตร์ชะลอวัย{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/บริษัท-อิ่มกาย-อิ่มใจ-จำกัด{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-อิ่มกาย-อิ่มใจ-จำกัด{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-กาโน-พลัส-จำกัด{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/บริษัท-กาโน-พลัส-จำกัด{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wellbase-saha-clinic{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/wellbase-saha-clinic{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/anantra-food-and-marketing{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/anantra-food-and-marketing{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/sook-enterprise{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/sook-enterprise{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-ไพออริตี้-คอร์เนอร์-จำกัด{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/บริษัท-ไพออริตี้-คอร์เนอร์-จำกัด{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/บริษัท-ดอยคำผลิตภัณฑ์อาหาร-จำกัด{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-ดอยคำผลิตภัณฑ์อาหาร-จำกัด{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-เค-พี-เอ็น-ซีเนียร์-โซลูชั่น-จำกัด{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/บริษัท-เค-พี-เอ็น-ซีเนียร์-โซลูชั่น-จำกัด{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/บริษัท-เซนต์เมด-จำกัด-มหาชน{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-เซนต์เมด-จำกัด-มหาชน{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-พี-เอ็น-จีน่า-จำกัด{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/บริษัท-พี-เอ็น-จีน่า-จำกัด{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/the-senizens-wellness{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/the-senizens-wellness{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/digibionic-lifestyle-（thailand{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/digibionic-lifestyle（thailand{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/forica-foods-co-ltd{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/forica-foods-co-ltd{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/insightme-dna{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/insightme-dna{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/softley{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/softley{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/sappe-public-company-limited{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/sappe-public-company-limited{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/mariam-family{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/mariam-family{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/chitralada{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/chitralada{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/มหาวิทยาลัยมหิดล{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/มหาวิทยาลัยมหิดล{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/kiddee-crew{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/kiddee-crew{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/miki-medical{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/miki-medical{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/senera-senior-wellness{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/senera-senior-wellness{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/happy-noz{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/happy-noz{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/mu{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/mu{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/matsunaga{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/matsunaga{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/emoo{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/emoo{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-ทรัพย์โชติลักเกจ-กรุ๊ป-จำกัด{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/บริษัท-ทรัพย์โชติลักเกจ-กรุ๊ป-จำกัด{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/บริษัท-เฮลท์เนเจอร์อินเตอร์เทรด-จำกัด{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-เฮลท์เนเจอร์อินเตอร์เทรด-จำกัด{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/dnacanvas{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dnacanvas{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/product1{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-วินเนอร์ยี่-เมดิ-คอล-จำกัด-มหาชน{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/sabina{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/sabina{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/cbulb{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/cbulb{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/premium-fruit-corporation-co-ltd{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/premium-fruit-corporation-co-ltd{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fixifoot{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/fixifoot{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/ชีวา{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ชีวา{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/j-summit-co-ltd{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/j-summit-co-ltd{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products3{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-สยามเฮลตี้เวิลด์-จำกัด{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/บริษัท-รอยส์แล็บ-อินเตอร์เนชั่นแนล-จำกัด{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-รอยส์แล็บ-อินเตอร์เนชั่นแนล-จำกัด{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/pors-medikal{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/pors-medikal{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/health-playground-co-ltd{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/1739-2{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/zhongyuan-innovation-co-ltd{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/product6{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/welllive{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/product5{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-ไทยซันสปอรืต-จำกัด-แบรนด์สินค้า-medila-wellness{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/product4{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/kinn{/}?",
+      "destination": "/th/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/kinn-worldwide-co-ltd{/}?",
+      "destination": "/products-highlight/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/exhibitor-analysis{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/exhibitor-analysis{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/news-clipping{/}?",
+      "destination": "/newsletter/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/2018-gallery{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/show-activities{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/news-clipping-thailand-next-normal{/}?",
+      "destination": "/newsletter/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/news-clipping-thailand-next-normal{/}?",
+      "destination": "/th/newsletter/",
+      "statusCode": 301
+    },
+    {
+      "source": "/visitor-online-registration{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/visitor-online-registration{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/subscription{/}?",
+      "destination": "/newsletter/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/subscription{/}?",
+      "destination": "/th/newsletter/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/news-clipping{/}?",
+      "destination": "/th/newsletter/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/press-release{/}?",
+      "destination": "/th/newsletter/",
+      "statusCode": 301
+    },
+    {
+      "source": "/press-release{/}?",
+      "destination": "/newsletter/",
+      "statusCode": 301
+    },
+    {
+      "source": "/aggressive-marketing-campaign{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/2017-gallery{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/2018-gallery{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/2017-gallery{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/sample-page{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/china-chongqing-cross-border-e-commerce-trade-fair-2023{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/china-chongqing-cross-border-e-commerce-trade-fair-2023{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/pure-health{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/pure-health{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/artico{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/artico{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/medical-tourism-คืออะไร-ทำไมไทยถึงเป็น-top-ในอาเซียน{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/งานสัมมนาด้านการแพทย์และสุขภาพระดับประเทศ-smartlifesmarthealth{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/ผู้สูงวัยเล่นมือถือเป็นเวลานานเท่าไร-จึงจะเหมาะสม{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/สินเชื่อธนาคารออมสิน{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/สินเชื่อธนาคารออมสิน{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/งานสัมมนาด้านการแพทย์และสุขภาพระดับประเทศ-smartlifesmarthealth{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/หลังเกษียณ{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/หลังเกษียณ{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/บริษัทneoเข้าพบผู้บริหาร{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัทneoเข้าพบผู้บริหาร{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/โยคะส่งเสริมกายและใจ{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/โยคะส่งเสริมกายและใจ{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/obodroid-robots-for-seniors{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/obodroid-robots-for-seniors{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/วัคซีนโควิดกับผู้สูงอา{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/วัคซีนโควิดกับผู้สูงอา{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/การเตรียมตัวหลังเกษียณ{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/การเตรียมตัวหลังเกษียณ{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ไลฟ์สไตล์ที่เหมาะกับผู{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/ไลฟ์สไตล์ที่เหมาะกับผู{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/การท่องเที่ยวสำหรับผู้{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/การท่องเที่ยวสำหรับผู้{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ทิปส์การดูแลสุขภาพ{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/ทิปส์การดูแลสุขภาพ{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/น้ำต้มสมุนไพรป้องกันโควิด19ได้จริงหรือ{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/น้ำต้มสมุนไพรป้องกันโควิด19ได้จริงหรือ{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/อะโวคาโด-ผลไม้เพื่อชาววัยเก๋า{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/อะโวคาโด-ผลไม้เพื่อชาววัยเก๋า{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/อย-เตือน-ไม่แนะนำ{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/อย-เตือน-ไม่แนะนำ{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/แนะนำวัยเก๋า-ฝึกบริหารปอด-ออกกำลังกาย-สร้างภูมิคุ้มกันให้ร่างกายอยู่บ้าน{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/แนะนำวัยเก๋า-ฝึกบริหารปอด-ออกกำลังกาย-สร้างภูมิคุ้มกันให้ร่างกายอยู่บ้าน{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/medical-tourism-คืออะไร-ทำไมไทยถึงเป็น-top-ในอาเซียน{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ผู้สูงวัยเล่นมือถือเป็นเวลานานเท่าไร-จึงจะเหมาะสม{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/senior-move{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/รอยส์-แล็บ-อินเตอร์เนชั่นแนล{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/มัลเบอร์ริกซ์{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/obodroid-corporation-limited{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/บริษัท-ฟูดินาร์-จำกัด{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/orex-trading{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/orex-trading{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/บริษัท-ฟูดินาร์-จำกัด{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/obodroid-corporation-limited{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/มัลเบอร์ริกซ์{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/รอยส์-แล็บ-อินเตอร์เนชั่นแนล{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/senior-move{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/uncategorized{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/category/uncategorized-th{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/category/product-highlight-th{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/product-highlight{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/category/news-th{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/news{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/template-item/sponsor{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/:path+",
+      "destination": "/media/:path+",
+      "statusCode": 301
+    },
+    {
+      "source": "/:wp(wp-admin|wp-login\\.php|wp-json|xmlrpc\\.php|feed|comments/feed)/:rest*{/}?",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/th/feed/:rest*{/}?",
+      "destination": "/th/",
+      "statusCode": 301
+    }
+  ]
+}

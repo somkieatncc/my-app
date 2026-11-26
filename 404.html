@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Page not found | InterCare Asia</title>
+<script>
+  // URL ที่ไม่มีอยู่ -> กลับหน้าแรกของภาษานั้น (เหมือน .htaccess เดิม)
+  location.replace(location.pathname.indexOf('/th/') === 0 ? '/th/' : '/');
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=/"></noscript>
+</head>
+<body style="font-family:sans-serif;text-align:center;padding:4rem 1rem">
+  <p>Page not found / ไม่พบหน้าที่ต้องการ</p>
+  <p><a href="/">InterCare Asia (EN)</a> · <a href="/th/">InterCare Asia (TH)</a></p>
+</body>
+</html>
